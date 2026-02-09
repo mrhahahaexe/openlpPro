@@ -33,7 +33,7 @@ This is an expert-level integration that uses an Android device as a hardware br
 ### 💻 PC Setup
 1.  **Dependencies**: Install Python 3.12 and run `pip install -e .`.
 2.  **External Tools**: Install `Tesseract OCR` on your PC and add it to your System PATH (required for song recognition).
-3.  **Environment**: Create a `.env` file in the root directory with your `GENIUS_API_TOKEN` and `ADB_PATH`.
+3.  **Environment**: Create a `.env` file in the root directory with your `ADB_PATH` and other configuration options.
 
 ### � Phone Setup (The Android Bridge)
 To use the AI Song Recognition feature, your Android phone must be configured as follows:
