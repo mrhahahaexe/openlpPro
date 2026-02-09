@@ -43,14 +43,38 @@ To use the AI Song Recognition feature, your Android phone must be configured as
 4.  **Input Method**: The phone's default keyboard must be set to a standard input method (e.g., Gboard) that supports Google Assistant triggering.
 5.  **Always-on Display**: It is recommended to keep the screen from sleeping while in the booth.
 
-### 🔨 Building the Standalone EXE
-To create a portable version for your team:
-```powershell
-# 1. Compile UI Resources
-pyside6-rcc -g python -o openlp/core/resources.py resources/images/openlp-2.qrc
+### 🔨 Building & Distribution
 
-# 2. Build via PyInstaller
+#### 1. Compile UI Resources
+OpenLP uses compiled resources for icons. Run this if you've changed any images:
+```powershell
+pyside6-rcc -g python -o openlp/core/resources.py resources/images/openlp-2.qrc
+```
+
+#### 2. Create Standalone Bundle (PyInstaller)
+This creates a folder in `dist/OpenLP-Custom` containing the executable and all libraries.
+```powershell
 pyinstaller --noconfirm openlp_build.spec
+```
+
+#### 3. Create Windows Installer (Inno Setup)
+To create the `OpenLP_Pro_Setup.exe` file for easy installation:
+1.  Download and install **Inno Setup**.
+2.  Open `openlp_installer.iss` in the Inno Setup Compiler.
+3.  Press **Build > Compile** (F9).
+4.  Find your installer in the `installer_output` folder.
+
+#### 🚀 How to Publish Updates to GitHub
+If you've made changes and want to save them to your repository:
+```powershell
+# 1. Stage all changes
+git add .
+
+# 2. Commit with a descriptive message
+git commit -m "Fixed theme loading and generic icon issues"
+
+# 3. Push to GitHub
+git push origin master
 ```
 
 ---

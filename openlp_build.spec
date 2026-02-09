@@ -1,9 +1,14 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+from PyInstaller.utils.hooks import collect_submodules
+
 block_cipher = None
 
 added_files = [
-    ('openlp/plugins/bibles/resources', 'openlp/plugins/bibles/resources'),
+    ('openlp/core/ui/fonts', 'core/ui/fonts'),
+    ('openlp/core/display/html', 'core/display/html'),
+    ('openlp/plugins', 'plugins'),
+    ('openlp/core/lib/json', 'core/lib/json'),
     ('resources', 'resources'),
     ('.env', '.'),
 ]
@@ -14,6 +19,8 @@ a = Analysis(
     binaries=[],
     datas=added_files,
     hiddenimports=[
+        'openlp.core.app',
+        'openlp.__main__',
         'sqlalchemy.ext.baked',
         'pyside6.qtwidgets',
         'pyside6.qtgui',
@@ -26,6 +33,16 @@ a = Analysis(
         'pyside6.qtmultimediawidgets',
         'pyside6.qtwebenginecore',
         'pyside6.qtwebenginewidgets',
+        'openlp.plugins.alerts.alertsplugin',
+        'openlp.plugins.bibles.bibleplugin',
+        'openlp.plugins.custom.customplugin',
+        'openlp.plugins.images.imageplugin',
+        'openlp.plugins.media.mediaplugin',
+        'openlp.plugins.obs_studio.obs_studio_plugin',
+        'openlp.plugins.planningcenter.planningcenterplugin',
+        'openlp.plugins.presentations.presentationplugin',
+        'openlp.plugins.songs.songsplugin',
+        'openlp.plugins.songusage.songusageplugin',
     ],
     hookspath=[],
     hooksconfig={},
@@ -54,7 +71,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['resources/images/openlp-logo-64.png'],
+    icon='resources/images/OpenLP.ico',
 )
 coll = COLLECT(
     exe,

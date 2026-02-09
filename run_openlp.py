@@ -22,7 +22,7 @@
 """
 A compatibility entrypoint for OpenLP
 """
-from openlp import __main__
+from openlp.__main__ import start
 
 if __name__ == '__main__':
-    __main__.start()
+    start()

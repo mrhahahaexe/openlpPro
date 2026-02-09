@@ -44,6 +44,8 @@ from openlp.core.common.i18n import LanguageManager, UiStrings, translate
 from openlp.core.common.mixins import LogMixin
 from openlp.core.common.path import create_paths, resolve
 from openlp.core.common.platform import is_macosx, is_wayland_compositor, is_win
+if is_win():
+    import ctypes
 from openlp.core.common.registry import Registry
 from openlp.core.common.settings import Settings, check_for_variant_migration
 from openlp.core.display.screens import ScreenList
@@ -464,6 +466,9 @@ def main():
     """
     The main function which parses command line options and then runs
     """
+    if is_win():
+        myappid = 'org.openlp.openlp.3.0.0'
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
     args = parse_options()
     qt_args = ['--disable-web-security']
     # qt_args = []

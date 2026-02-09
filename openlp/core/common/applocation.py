@@ -38,6 +38,8 @@ from openlp.core.common.registry import Registry
 log = logging.getLogger(__name__)
 
 FROZEN_APP_PATH = Path(sys.argv[0]).parent
+if (FROZEN_APP_PATH / '_internal').exists():
+    FROZEN_APP_PATH = FROZEN_APP_PATH / '_internal'
 APP_PATH = Path(openlp.__file__).parent
 
 

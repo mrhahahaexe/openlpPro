@@ -22,12 +22,14 @@
 The :mod:`languages` module provides a list of icons.
 """
 import logging
+import sys
 
 import qtawesome as qta
 from PySide6 import QtGui, QtWidgets
 
 from openlp.core.common import Singleton
 from openlp.core.common.applocation import AppLocation
+from openlp.core.common.platform import is_win
 from openlp.core.common.registry import Registry
 from openlp.core.lib import build_icon
 from openlp.core.ui.style import is_ui_theme_dark
@@ -181,6 +183,10 @@ class UiIcons(metaclass=Singleton):
         }
         self.load_icons(self._icon_list)
         self.main_icon = build_icon(':/icon/openlp-logo.svg')
+        if getattr(sys, 'frozen', False) and is_win():
+            icon_path = AppLocation.get_directory(AppLocation.AppDir) / 'resources' / 'images' / 'OpenLP.ico'
+            if icon_path.exists():
+                self.main_icon = QtGui.QIcon(str(icon_path))
 
     def load_icons(self, icon_list):
         """
